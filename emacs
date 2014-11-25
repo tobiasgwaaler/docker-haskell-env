@@ -2,9 +2,6 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;(add-to-list 'load-path "~/.emacs.d/manually/structured-haskell-mode/elisp")
-(add-to-list 'load-path "~/.emacs.d/manually/js3-mode")
-(add-to-list 'load-path "~/.emacs.d/manually/column-enforce-mode")
 (package-initialize)
 
 ;;; Fix for some packages like ace-jump-mode
@@ -95,9 +92,6 @@
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
-;; 80 column rule
-(autoload 'column-enforce-mode "column-enforce-mode" nil t)
-
 ; --------------------------------------------------------------------------------
 ;;;; Haskell Modes
 
@@ -135,50 +129,6 @@
 (add-hook 'clojure-mode-hook 'paredit-mode)
 
 ; --------------------------------------------------------------------------------
-;;;; Custom Code
-
-;;; Region to Gist (improved)
-(defun region-to-gist (start end)
-  "Sends region to Gist"
-  (interactive "r")
-  (gist-req (buffer-substring-no-properties start end)))
-
-(defun gist-test (buf)
-  (message "%S" `(:content ,buf)))
-
-(defun gist-req (buf)
-  (request
-       "https://api.github.com/gists"
-       :type "POST"
-       :data (json-encode `(:description "Created with Christopher Biscardi's region-to-gist"
-					 :public t
-					 :files (:example.el (:content ,buf))))
-       ;; :data "key=value&key2=value2"  ; this is equivalent
-       :parser 'json-read
-       :success (function*
-		 (lambda (&key data &allow-other-keys)
-		   (message "I sent: %S" (assoc-default 'html_url data)))))
-  nil)
-
-
-; --------------------------------------------------------------------------------
-;;;; JavaScript
-;; js3-mode
-(autoload 'js3-mode "js3" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))
-(custom-set-variables
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(js3-indent-level 2)
- '(js3-auto-indent-p t)
- '(js3-indent-on-enter-key t) ; fix indenting before moving on
- '(js3-enter-indents-newline t) ; don't need to push tab before typing
- '(js3-consistent-level-indent-inner-bracket t)
- '(js3-lazy-commas t)
- '(js3-expr-indent-offset 2)
- '(js3-paren-indent-offset 2)
- '(js3-square-indent-offset 2)
- '(js3-curly-indent-offset 2))
 
 ; --------------------------------------------------------------------------------
 ;; File Associations
@@ -187,12 +137,6 @@
 (add-to-list 'auto-mode-alist '("zshrc" . shell-script-mode))
 
 ; --------------------------------------------------------------------------------
-;;; Graveyard - Stuff not in use or temporarily-permanently disabled
-
-;; ;;; find file at point
-;; (require 'ffap)
-;; ;; rebind C-x C-f and others to the ffap bindings (see variable ffap-bindings)
-;; (ffap-bindings)
 
 (setq shell-file-name "bash")
 (setq shell-command-switch "-ic")
