@@ -9,4 +9,7 @@ RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ADD zshrc /root/.zshrc
 ADD emacs /root/.emacs
 ADD emacs.d /root/.emacs.d
+
+RUN apt-get install man tmux -y
+
 CMD ["zsh"]
