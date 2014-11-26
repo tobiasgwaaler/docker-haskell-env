@@ -6,10 +6,12 @@ RUN apt-get update
 RUN apt-get -t wheezy-backports install "emacs24" -y
 RUN cabal update && cabal install stylish-haskell
 RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
 ADD zshrc /root/.zshrc
 ADD emacs /root/.emacs
 ADD emacs.d /root/.emacs.d
 
 RUN apt-get install man tmux -y
+RUN chsh -s /bin/zsh
 
-CMD ["zsh"]
+CMD ["tmux"]
