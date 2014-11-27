@@ -1,9 +1,11 @@
 ## Usage
 
+Install docker
+
 ```
-alias _haskellenv='cd /Path/to/docker-haskell-env && ./go'
-alias _dockerboot='boot2docker init && boot2docker start && $(boot2docker shellinit)'
-alias haskellenv='_dockerboot && _haskellenv'
+git clone https://github.com/tobiasgwaaler/docker-haskell-env.git
+cd docker-haskell-env
+./go
 ```
 
-Once you're inside the the container, your `/Users` directory will be mounted at `/Users`
+This will build the container and run zsh inside it. Inside the container you'll have GHC, Cabal and other goodies installed, and the `/Users` directory on your host will be mounted at `/Users` inside the container.
