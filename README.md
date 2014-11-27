@@ -1,7 +1,9 @@
 ## Usage
 
-Install docker
+Prerequisites:
+ * [docker](https://www.docker.com/).
 
+Installation:
 ```
 git clone https://github.com/tobiasgwaaler/docker-haskell-env.git
 cd docker-haskell-env
