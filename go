@@ -1,1 +1,1 @@
-./update && ./build && ./run
+./osx && ./build && ./run
