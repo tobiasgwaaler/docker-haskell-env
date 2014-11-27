@@ -5,5 +5,7 @@ plugins=(git brew cabal docker encode64 gem jira lein npm pod pip python tmuxina
 
 source $ZSH/oh-my-zsh.sh
 
+export PATH="/root/.cabal/bin:"$PATH
+
 ### Prompt:
 [[ -n "$SSH_CLIENT" ]] || export DEFAULT_USER="root"
