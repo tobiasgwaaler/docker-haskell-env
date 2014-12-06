@@ -1,1 +1,1 @@
-docker build --rm --tag="haskell-env" .
+docker build --rm --tag="haskell-emacs" .

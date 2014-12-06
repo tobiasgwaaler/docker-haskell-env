@@ -1,5 +1,0 @@
-if [[ "$OSTYPE" == "darwin"* ]]; then
- boot2docker init &&
- boot2docker start &&
- $(boot2docker shellinit)
-fi
